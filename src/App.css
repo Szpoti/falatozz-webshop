@@ -17,6 +17,28 @@
   padding: 20px;
 }
 
+.productCard {
+  border: #42424242 solid 1px;
+  border-radius: 15px;
+}
+
+.alignment {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  font-size: 3vw !important;
+}
+
+.cart {
+  background-color: rgba(234, 250, 253, 0.548);
+}
+
 body {
-  background-image: url("/src/imgs/background.jpg");
+  background: url("/src/imgs/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

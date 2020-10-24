@@ -4,6 +4,7 @@ import Password from "./InputComponents/Password";
 import Email from "./InputComponents/Email";
 import ValidationService from "../services/ValidationService";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ const Login = () => {
     if (!isFormValid()) {
       return false;
     }
-
+    Cookies.set("user", email, { expires: 1 });
     history.push("/products");
   };
 
