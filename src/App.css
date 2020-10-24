@@ -16,3 +16,7 @@
   border-style: solid;
   padding: 20px;
 }
+
+body {
+  background-image: url("/src/imgs/background.jpg");
+}
