@@ -40,19 +40,22 @@ const Products = () => {
 
   return (
     <Row className="container-fluid">
-      <Col sm={9} className="mx-0 px-0">
-        <Container className="content-container mx-0">
-          <Col xs={12} className="h2 text-center">
-            Termékek
-          </Col>
-          {products.map((product) => {
-            return (
-              <ProductCard
-                product={product}
-                addProduct={addProduct}
-              ></ProductCard>
-            );
-          })}
+      <Col sm={9} className="">
+        <Container className="content-container">
+          <Row>
+            <Col xs={12} className="h2 text-center">
+              Termékek
+            </Col>
+
+            {products.map((product) => {
+              return (
+                <ProductCard
+                  product={product}
+                  addProduct={addProduct}
+                ></ProductCard>
+              );
+            })}
+          </Row>
         </Container>
       </Col>
       <Col sm={3} className="px-0">

@@ -18,17 +18,14 @@
 }
 
 .productCard {
-  border: #42424242 solid 1px;
+  border: #00000042 solid 1px;
   border-radius: 15px;
 }
 
 .alignment {
-  display: flex;
-  align-items: center;
 }
 
 .btn {
-  font-size: 3vw !important;
 }
 
 .cart {
