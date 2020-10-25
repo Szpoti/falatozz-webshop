@@ -1,22 +1,23 @@
 import React, { Fragment } from "react";
 import { Form, FormControl, InputGroup } from "react-bootstrap";
 
-const Email = (props) => {
+const Username = (props) => {
   return (
     <Fragment>
-      <Form.Label htmlFor="email" srOnly>
-        Email
+      <Form.Label htmlFor="username" srOnly>
+        Username
       </Form.Label>
       <InputGroup className="mb-2 mr-sm-2">
         <InputGroup.Prepend>
           <InputGroup.Text>
-            <i className="fa fa-envelope"></i>
+            <i className="fa fa-user"></i>
           </InputGroup.Text>
         </InputGroup.Prepend>
         <FormControl
-          id="email"
-          placeholder="Email"
-          onChange={(e) => props.setEmail(e.target.value)}
+          id="username"
+          placeholder="Username"
+          onChange={(e) => props.setUsername(e.target.value)}
+          minLength="2"
           required
         />
       </InputGroup>
@@ -24,4 +25,4 @@ const Email = (props) => {
   );
 };
 
-export default Email;
+export default Username;

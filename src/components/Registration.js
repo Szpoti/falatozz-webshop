@@ -4,11 +4,17 @@ import { Alert, Container, Button, Form } from "react-bootstrap";
 import Password from "./InputComponents/Password";
 import ValidationService from "../services/ValidationService";
 import Email from "./InputComponents/Email";
+import Username from "./InputComponents/Username";
+import Address from "./InputComponents/Address";
 
 const Registration = (props) => {
+  const userService = props.userService;
   const validator = new ValidationService();
   const history = useHistory();
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [address, setAddress] = useState("");
+  const [zip, setZip] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState([]);
   const form = React.createRef();
@@ -28,7 +34,13 @@ const Registration = (props) => {
       return;
     }
 
-    history.push("/products");
+    const fullAddress = zip + " " + address;
+
+    if (userService.registerUser(username, email, password, fullAddress)) {
+      history.push("/products");
+    } else {
+      asError("Ez az email cím már foglalt!");
+    }
   };
 
   const isFormValid = () => {
@@ -63,9 +75,13 @@ const Registration = (props) => {
       ))}
 
       <Form ref={form}>
+        <Username setUsername={setUsername} />
+
         <Email setEmail={setEmail} />
 
         <Password setPassword={setPassword} />
+
+        <Address setAddress={setAddress} setZip={setZip} />
 
         <Button
           variant="primary"

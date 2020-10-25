@@ -10,8 +10,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState([]);
-  const cookies = new Cookies();
 
+  const cookies = new Cookies();
   const form = React.createRef();
   const validator = new ValidationService();
   const history = useHistory();
