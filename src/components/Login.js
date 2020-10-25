@@ -4,11 +4,13 @@ import Password from "./InputComponents/Password";
 import Email from "./InputComponents/Email";
 import ValidationService from "../services/ValidationService";
 import { Link, Redirect, useHistory } from "react-router-dom";
+import Cookies from "universal-cookie";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessages, setErrorMessages] = useState([]);
+  const cookies = new Cookies();
 
   const form = React.createRef();
   const validator = new ValidationService();
@@ -45,7 +47,7 @@ const Login = () => {
     if (!isFormValid()) {
       return false;
     }
-
+    cookies.set("user", email);
     history.push("/products");
   };
 

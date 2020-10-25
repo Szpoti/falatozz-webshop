@@ -16,3 +16,20 @@
   border-style: solid;
   padding: 20px;
 }
+
+.productCard {
+  border: #00000042 solid 1px;
+  border-radius: 15px;
+}
+
+.cart {
+  background-color: rgba(234, 250, 253, 0.548);
+}
+
+body {
+  background: url("/src/imgs/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
