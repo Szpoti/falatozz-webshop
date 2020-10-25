@@ -6,12 +6,14 @@ import Login from "./components/Login";
 import Products from "./components/Products";
 import Registration from "./components/Registration";
 import SingleProduct from "./components/SingleProduct";
+import CartService from "./services/CartService";
 import ProductService from "./services/ProductService";
 import UserService from "./services/UserService";
 
 function App(props) {
   const productService = new ProductService();
   const userService = new UserService();
+  const cartService = new CartService();
 
   return (
     <Router>
@@ -34,13 +36,19 @@ function App(props) {
       <Route
         key="products-screen"
         path="/products"
-        component={() => <Products productService={productService} />}
+        component={() => (
+          <Products productService={productService} cartService={cartService} />
+        )}
       />
       <Route
         key="singleProduct-screen"
         path="/product/:id"
         component={(props) => (
-          <SingleProduct productService={productService} match={props.match} />
+          <SingleProduct
+            productService={productService}
+            cartService={cartService}
+            match={props.match}
+          />
         )}
       />
     </Router>

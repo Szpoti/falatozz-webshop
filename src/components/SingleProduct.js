@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Button, Card, Col, Row, Image } from "react-bootstrap";
+import React, { Fragment, useEffect, useState } from "react";
+import {
+  Button,
+  Card,
+  Col,
+  Row,
+  Image,
+  Form,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 
 const SingleProduct = (props) => {
   const productService = props.productService;
   const prodId = props.match.params.id;
+  const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState({
     name: "",
     price: "",
@@ -28,21 +38,36 @@ const SingleProduct = (props) => {
         </Row>
       </Col>
       <Col className="flex-column">
-        <input defaultValue="1" id="quantity"></input>
-        <Button
-          size="lg"
-          title={`${product.name} hozzáadása`}
-          onClick={() =>
-            props.addMoreProduct(
-              product.name,
-              product.price,
-              product.id,
-              document.getElementById("#quantity").innerHTML
-            )
-          }
-        >
-          <i className="fa fa-shopping-cart"></i>
-        </Button>
+        <Form>
+          <Fragment>
+            <Form.Label htmlFor="quantity" srOnly>
+              Quantity
+            </Form.Label>
+            <InputGroup className="mb-2 mr-sm-2">
+              <FormControl
+                id="quantity"
+                defaultValue="1"
+                placeholder="Quantity"
+                onChange={(e) => setQuantity(e.target.value)}
+                required
+              />
+            </InputGroup>
+          </Fragment>
+          <Button
+            size="lg"
+            title={`${product.name} hozzáadása`}
+            onClick={() =>
+              props.cartService.addMoreProduct(
+                product.name,
+                product.price,
+                product.id,
+                quantity
+              )
+            }
+          >
+            <i className="fa fa-shopping-cart"></i>
+          </Button>
+        </Form>
       </Col>
     </Row>
   );

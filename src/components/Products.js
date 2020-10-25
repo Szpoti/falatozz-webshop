@@ -4,28 +4,18 @@ import ProductCard from "./ProductCard";
 
 const Products = (props) => {
   const productService = props.productService;
+  const cartService = props.cartService;
   const [products, setProducts] = useState([]);
-  const [productsInCart, setProductsInCart] = useState([]);
-  const [priceSUM, setPriceSUM] = useState(0);
+  const [productsInCart, setProductsInCart] = useState(
+    cartService.getCart().prods
+  );
+  const [priceSUM, setPriceSUM] = useState(cartService.getCart().sum);
 
   const addProduct = (product, price, id) => {
-    let prods = productsInCart;
-    let productIsInCart = false;
+    const cart = cartService.addProduct(product, price, id);
 
-    prods.map((prod) => {
-      console.log("prod", prod);
-      if (prod.name === product) {
-        prod.quantity += 1;
-        productIsInCart = true;
-      }
-    });
-
-    if (!productIsInCart) {
-      prods.push({ name: product, quantity: 1, id: id });
-    }
-
-    setPriceSUM(priceSUM + parseInt(price));
-    setProductsInCart([...prods]);
+    setPriceSUM(cart.sum);
+    setProductsInCart([...cart.prods]);
   };
 
   useEffect(() => {
