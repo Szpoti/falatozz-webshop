@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ProductService from "../services/ProductService";
 import ProductCard from "./ProductCard";
 
-const Products = () => {
-  const productService = new ProductService();
+const Products = (props) => {
+  const productService = props.productService;
   const [products, setProducts] = useState([]);
   const [productsInCart, setProductsInCart] = useState([]);
+  const [priceSUM, setPriceSUM] = useState(0);
 
-  const addProduct = (product) => {
-    console.log("productsInCart", productsInCart);
+  const addProduct = (product, price, id) => {
     let prods = productsInCart;
-    console.log("prods", prods);
     let productIsInCart = false;
+
     prods.map((prod) => {
       console.log("prod", prod);
       if (prod.name === product) {
@@ -20,23 +19,21 @@ const Products = () => {
         productIsInCart = true;
       }
     });
+
     if (!productIsInCart) {
-      console.log("New product pushed");
-      prods.push({ name: product, quantity: 1 });
+      prods.push({ name: product, quantity: 1, id: id });
     }
-    console.log("productsInCart", productsInCart);
-    console.log("prods", prods);
-    console.log("seting cart");
+
+    setPriceSUM(priceSUM + parseInt(price));
     setProductsInCart([...prods]);
   };
 
   useEffect(() => {
-    console.log("productsInCart", productsInCart);
-  }, [productsInCart]);
-
-  useEffect(() => {
-    setProducts(productService.getAllProducts());
-  }, []);
+    const getData = () => {
+      setProducts(productService.getAllProducts());
+    };
+    getData();
+  }, [productService]);
 
   return (
     <Row className="container-fluid">
@@ -50,6 +47,7 @@ const Products = () => {
             {products.map((product) => {
               return (
                 <ProductCard
+                  key={`prod-${product.id}`}
                   product={product}
                   addProduct={addProduct}
                 ></ProductCard>
@@ -65,11 +63,12 @@ const Products = () => {
           </Col>
           {productsInCart.map((product) => {
             return (
-              <p className="h6">
+              <p className="h6" key={`${product.id}-incart`}>
                 {product.quantity} db {product.name}
               </p>
             );
           })}
+          <p>{priceSUM} $</p>
         </Container>
       </Col>
     </Row>
