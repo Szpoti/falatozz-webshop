@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./components/Login";

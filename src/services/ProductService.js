@@ -1,5 +1,3 @@
-import Products from "../components/Products";
-
 export default class ProductService {
   constructor() {
     this.products = {
@@ -87,7 +85,6 @@ export default class ProductService {
     let prod;
     this.products.data.map((product) => {
       if (product.id === parseInt(id)) {
-        console.log("product", product);
         prod = product;
       }
     });

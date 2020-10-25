@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Col, Row, Image, Card } from "react-bootstrap";
+import { Button, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
