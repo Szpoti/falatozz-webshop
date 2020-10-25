@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import {
   Button,
-  Card,
   Col,
   Row,
   Image,
@@ -22,7 +21,6 @@ const SingleProduct = (props) => {
 
   useEffect(() => {
     const prod = productService.getProductById(prodId);
-    console.log("prod", prod);
     setProduct(prod);
   }, [productService, prodId]);
 

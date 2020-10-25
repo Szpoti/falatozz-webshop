@@ -3,7 +3,7 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import Password from "./InputComponents/Password";
 import Email from "./InputComponents/Email";
 import ValidationService from "../services/ValidationService";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 const Login = () => {
